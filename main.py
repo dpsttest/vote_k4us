@@ -46,7 +46,7 @@ if driver_status:
         driver.execute_script("arguments[0].click();", element_submit)
         time.sleep(10)
         try: 
-            print(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, f"#{polls[i]} > div.totalpoll-message.totalpoll-message-error"))).text)
+            print(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-message-error"))).text)
 #             element_error = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > div.totalpoll-message.totalpoll-message-error")
 #             print(element_error.text)
         except:
