@@ -36,7 +36,6 @@ try:
 except:
     print('Connection fails')
     driver_status = False
-    driver.quit()
 
 if driver_status:
     for i in range(len(polls)):
@@ -51,7 +50,7 @@ if driver_status:
             print(element_error.text)
         except:
             print('No error message')
-    end_time = datetime.now()
-    print('Time end:', str(end_time))
-    print('Time difference:', str(end_time - start_time))
-    driver.quit()
+driver.quit()            
+end_time = datetime.now()
+print('Time end:', str(end_time))
+print('Time difference:', str(end_time - start_time))
