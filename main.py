@@ -1,22 +1,10 @@
 from selenium import webdriver
-#from webdriver_manager.chrome import ChromeDriverManager
-#from webdriver_manager.core.utils import ChromeType
-#from webdriver_manager.utils import ChromeType
 from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
 chromedriver_autoinstaller.install()
-#driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
-
-# import os
 from datetime import datetime
 import time
-# from bs4 import BeautifulSoup
-# from dotenv import load_dotenv
-# load_dotenv()
-
-# chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
 chrome_options = Options()
 options = [
@@ -36,9 +24,10 @@ id_polls = ['choice-9d82d614-47e4-4216-b3fd-8eaacfb22324-selector', 'choice-d650
 
 start_time = datetime.now()
 print('Time start:', str(start_time))
-# driver = webdriver.Chrome() # run on your computer
+
 try:
     driver = webdriver.Chrome(options=chrome_options)
+    # driver = webdriver.Chrome() # run on your computer
     driver.get('https://k4us.com.br/pak2022')
     print(driver.title)
 except:
@@ -49,7 +38,7 @@ for i in range(len(polls)):
     driver.execute_script("arguments[0].click();", element_vote)
     element_submit = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-buttons > button.totalpoll-buttons-vote")
     driver.execute_script("arguments[0].click();", element_submit)
-    time.sleep(5)
+    time.sleep(10)
     try: 
         element_error = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > div.totalpoll-message.totalpoll-message-error")
         print(element_error.text)
@@ -58,6 +47,4 @@ for i in range(len(polls)):
 end_time = datetime.now()
 print('Time end:', str(end_time))
 print('Time difference:', str(end_time - start_time))
-# driver.stop_client()
-# driver.close()
 driver.quit()
