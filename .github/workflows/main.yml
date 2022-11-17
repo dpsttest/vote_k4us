@@ -1,8 +1,8 @@
 name: vote
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: '59 16 * * *'
+  schedule:
+    - cron: '49 * * * *'
 
 jobs:
   vote:
