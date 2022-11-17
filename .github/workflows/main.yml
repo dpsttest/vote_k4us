@@ -21,6 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 webdriver-manager selenium packaging chromedriver-autoinstaller setuptools
           pip install -r requirements.txt
       - name: Run the scraping script
         run: python main.py
