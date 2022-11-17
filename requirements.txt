@@ -1,7 +1,2 @@
-requests
-beautifulsoup4
-webdriver-manager
 selenium
-packaging
 chromedriver-autoinstaller
-setuptools
