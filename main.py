@@ -26,6 +26,8 @@ id_polls = ['choice-9d82d614-47e4-4216-b3fd-8eaacfb22324-selector', 'choice-d650
 
 start_time = datetime.now()
 print('Time start:', str(start_time))
+with open('time.txt', 'a') as f:
+    f.write(start_time+'\n')
 
 try:
     driver = webdriver.Chrome(options=chrome_options)
