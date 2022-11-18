@@ -16,6 +16,18 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "clock-test-time"
           heroku_email: ${{secrets.EMAIL}}
+      - name: Commit files
+        run: |
+          date >> time.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated time" --allow-empty)
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -30,15 +42,4 @@ jobs:
           pip install requests beautifulsoup4 webdriver-manager selenium packaging chromedriver-autoinstaller setuptools
       - name: Run the scraping script
         run: python main.py
-      - name: commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated time" --allow-empty)
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
+
