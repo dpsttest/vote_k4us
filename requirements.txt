@@ -1,2 +1,5 @@
+apscheduler
+requests
 selenium
-chromedriver-autoinstaller
+python-dotenv
+webdriver-manager
