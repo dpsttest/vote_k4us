@@ -10,24 +10,24 @@ jobs:
     steps:
       - name: Check out this repo
         uses: actions/checkout@v3
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "clock-test-time"
-          heroku_email: ${{secrets.EMAIL}}
-      - name: Commit files
-        run: |
-          date >> time.txt
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated time" --allow-empty)
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
+#      - name: Deploy to Heroku
+#        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#        with:
+#          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#          heroku_app_name: "clock-test-time"
+#          heroku_email: ${{secrets.EMAIL}}
+#      - name: Commit files
+#        run: |
+#          date >> time.txt
+#          git config --local user.email "action@github.com"
+#          git config --local user.name "GitHub Action"
+#          git add -A
+#          git diff-index --quiet HEAD || (git commit -a -m "updated time" --allow-empty)
+#      - name: Push changes
+#        uses: ad-m/github-push-action@v0.6.0
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          branch: main 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
