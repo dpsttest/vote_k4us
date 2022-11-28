@@ -41,17 +41,24 @@ except:
 
 if driver_status:
     for i in range(len(polls)):
-        element_vote = driver.find_element(By.ID, id_polls[i])
-        driver.execute_script("arguments[0].click();", element_vote)
-        element_submit = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-buttons > button.totalpoll-buttons-vote")
-        driver.execute_script("arguments[0].click();", element_submit)
-        time.sleep(5)
-        try: 
-#             print(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-message-error"))).text)
-            element_error = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-message-error")
-            print(element_error.text)
+        print(polls[i])
+        try:
+            element_vote = driver.find_element(By.ID, id_polls[i])
+            driver.execute_script("arguments[0].click();", element_vote)
+            element_submit = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-buttons > button.totalpoll-buttons-vote")
+            driver.execute_script("arguments[0].click();", element_submit)
+            element_status = True
+            time.sleep(5)
         except:
-            print('No error message')
+            print('Cannot find element id poll')
+            element_status = False
+        if element_status:
+            try: 
+    #             print(WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-message-error"))).text)
+                element_error = driver.find_element(By.CSS_SELECTOR, f"#{polls[i]} > form > .totalpoll-message-error")
+                print(element_error.text)
+            except:
+                print('No error message')
 driver.quit()            
 end_time = datetime.now()
 print('Time end:', str(end_time))
